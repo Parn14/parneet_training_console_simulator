@@ -4,13 +4,13 @@ void main() {
   print("Please log into Bear Scouter");
   print('Enter your name:');
 
-  String? name = stdin.readLineSync();
+  String name = stdin.readLineSync() ?? '';
 
-  if (name == null || name.isEmpty);
-  name = 'Guest';
-}
+  if (name.isEmpty) {
+    name = 'Guest';
 
-  print('Welcome $name!');
+    print('Welcome $name!');
+  }
 
   print('Welcome to Parneet\'s scouting simulator!');
 
