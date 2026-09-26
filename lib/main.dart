@@ -6,6 +6,10 @@ void main() {
 
   String? name = stdin.readLineSync();
 
+  if (name == null || name.isEmpty);
+  name = 'Guest';
+}
+
   print('Welcome $name!');
 
   print('Welcome to Parneet\'s scouting simulator!');
