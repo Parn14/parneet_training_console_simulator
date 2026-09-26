@@ -10,5 +10,17 @@ void main() {
     print('4. Exit');
 
     //next task: stdin for user input, match or pits scouting (maybe strategy too), define choice variable, change colors/bg, hardcode teams??, etc
-  
+
+    if (choice == '1') {
+      print('Scouting a robot has been selected!');
+    } else if (choice == '2') {
+      print('View reports has been selected!');
+    } else if (choice == '3') {
+      print('Viewing team stats has been selected!');
+    } else if (choice == '4') {
+      print('Bye! Visit again!');
+      working = false;
+    } else {
+      print('Invalid option. Please try again!');
+    }
 }
