@@ -1,7 +1,15 @@
 import 'package:training_2027_project1/main.dart'
 
 void main() {
-  print("Welcome to the Parneet\'s scouting simulator!");
+  print("Please log into Bear Scouter");
+  print('Enter your name:');
+
+  String? name = stdin.readLineSync();
+
+  print('Welcome $name!');
+
+  print('Welcome to Parneet\'s scouting simulator!');
+
 
   bool working = true;
 
