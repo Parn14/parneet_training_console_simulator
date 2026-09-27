@@ -31,6 +31,15 @@ void main() {
 
     if (choice == '1') {
       print('Time to scout a match!');
+
+      print('Enter team number:');
+      String? teamNumber = stdin.readLineSync();
+
+      print('Enter team name:');
+      String? teamName = stdin.readLineSync();
+
+      print('Team $teamNumber: $teamName');
+
     } else if (choice == '2') {
       print('Time to scout a robot in pits!');
     } else if (choice == '3') {
