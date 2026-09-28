@@ -51,7 +51,19 @@ void main() {
         continue;
       }
 
-      print('Team $teamNumber: $teamName, Match $matchNumber, Score $score');
+      print('Enter alliance color (red/blue):');
+      String? allianceColor = stdin.readLineSync();
+
+      print('Enter number of team members scouting:');
+      String? scoutMembers = stdin.readLineSync();
+      int? scoutMembers = int.tryParse(scoutCountInput ?? '');
+
+      if (scoutCount == null) {
+        print('Invalid number of scouters');
+        continue;
+      }
+
+      print('Team $teamNumber: $teamName, Match $matchNumber, Score $score, Alliance $allianceColor, Scouts $scoutMembers');
 
     } else if (choice == '2') {
       print('Time to scout a robot in pits!');
