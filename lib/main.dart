@@ -38,7 +38,20 @@ void main() {
       print('Enter team name:');
       String? teamName = stdin.readLineSync();
 
-      print('Team $teamNumber: $teamName');
+      print('Enter match number:');
+      String? matchInput = stdin.readLineSync();
+      int? matchNumber= int.tryParse(matchInput ?? '');
+
+      print('Enter score:');
+      String? scoreInput = stdin.readLineSync();
+      int? score = int.tryParse(scoreInput ?? '');
+
+      if (matchNumber == null || score == null) {
+        print('Invalid number entered.');
+        continue;
+      }
+
+      print('Team $teamNumber: $teamName, Match $matchNumber, Score $score');
 
     } else if (choice == '2') {
       print('Time to scout a robot in pits!');
