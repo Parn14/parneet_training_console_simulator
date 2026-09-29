@@ -22,13 +22,13 @@ void main() {
     print('2. Pits scouting');
     print('3. Strategy scouting');
     print('4. Predict a 3v3 match');
-    print(
-        '5. View scouting reports') //ask user if they'd like to view pits or match before.
+    print('5. View scouting reports') //ask user if they'd like to view pits or match before.
     print('6. Look at a team\'s stats');
     print('7. Exit');
 
     String? choice = stdin.readLineSync();
 
+    // next to do: split score into auto and teleop, save scouting reports instead of just printing them, make stats work for the teams' data which has been saved and previously scouted, etc.
     if (choice == '1') {
       print('Time to scout a match!');
 
@@ -63,6 +63,7 @@ void main() {
         continue;
       }
 
+      //eventually should become a stored report (not just printing random data)
       print('Team $teamNumber: $teamName, Match $matchNumber, Score $score, Alliance $allianceColor, Scouts $scoutMembers');
 
     } else if (choice == '2') {
