@@ -15,7 +15,7 @@ void main() {
   print('\nWelcome to Parneet\'s scouting simulator!\n');
 
   bool working = true;
-  List<Map<String, dynamic>> reports = [];
+  List<Map<String, String>> reports = [];
 
   while (working) {
     print('\nWhat scouting would you like to do today?\n');
@@ -64,13 +64,13 @@ void main() {
         continue;
       }
 
-      Map<String, dynamic> report = {
-        'teamNumber': teamNumber,
-        'teamName': teamName,
-        'matchNumber': matchNumber,
-        'score': score,
-        'alliance': allianceColor,
-        'scoutCount': scoutCount,
+      Map<String, String> report = {
+        'teamNumber': teamNumber ?? '',
+        'teamName': teamName ?? '',
+        'matchNumber': matchNumber.toString(),
+        'score': score.toString(),
+        'alliance': allianceColor ?? '',
+        'scoutCount': scoutCount.toString,
       };
 
       reports.add(report);
@@ -84,6 +84,17 @@ void main() {
     } else if (choice == '4') {
       print('Fancy Nancy! You want to predict 3v3 match stats! Let\'s give it a try!')
     } else if (choice == '5') {
+
+      print('Saved scouting reports:');
+
+      if (reports.isEmpty) {
+        print('No reports saved yet.');
+      } else {
+        for (Map<String, String> report in reports) {
+          print(report);
+        }
+      }
+    }
       print('Time to view scouting reports!')
     } else if (choice == '6') {
       print('Time to view team stats!')
