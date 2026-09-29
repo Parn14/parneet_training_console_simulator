@@ -15,6 +15,7 @@ void main() {
   print('\nWelcome to Parneet\'s scouting simulator!\n');
 
   bool working = true;
+  List<Map<String, dynamic>> reports = [];
 
   while (working) {
     print('\nWhat scouting would you like to do today?\n');
@@ -63,8 +64,18 @@ void main() {
         continue;
       }
 
+      Map<String, dynamic> report = {
+        'teamNumber': teamNumber,
+        'teamName': teamName,
+        'matchNumber': matchNumber,
+        'score': score,
+        'alliance': allianceColor,
+        'scoutCount': scoutCount,
+      };
+
+      reports.add(report);
       //eventually should become a stored report (not just printing random data)
-      print('Team $teamNumber: $teamName, Match $matchNumber, Score $score, Alliance $allianceColor, Scouts $scoutMembers');
+      print('Scouting report saved for the team $teamNumber : $teamNumber!');
 
     } else if (choice == '2') {
       print('Time to scout a robot in pits!');
