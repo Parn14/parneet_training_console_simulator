@@ -112,3 +112,17 @@ void main() {
       print('Invalid option. Please try again!');
     }
 }
+
+class ScoutingReport {
+  String teamNumber;
+  String teamName;
+  int matchNumber;
+  int score;
+
+  ScoutingReport(
+      this.teamNumber,
+      this.teamName,
+      this.matchNumber,
+      this.score,
+      );
+}
