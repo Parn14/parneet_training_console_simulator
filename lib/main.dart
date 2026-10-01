@@ -16,6 +16,7 @@ void main() {
 
   bool working = true;
   List<ScoutingReport> reports = [];
+  bool foundTeam = false;
 
   while (working) {
     print('\nWhat scouting would you like to do today?\n');
@@ -87,8 +88,7 @@ void main() {
       print('Enter team number to view reports:');
       String? searchedTeam = stdin.readLineSync();
 
-      bool foundTeam = false;
-
+      foundTeam = false;
       for (ScoutingReport report in reports) {
         if (report.teamNumber == searchTeam) {
           report.printInfo();
