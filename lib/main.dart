@@ -18,7 +18,7 @@ void main() {
   bool foundTeam = false;
 
   while (working) {
-    print('\nWhat scouting would you like to do today?\n');
+    printDashboard();
     print('1. Match scouting');
     print('2. Pits scouting');
     print('3. Strategy scouting');
