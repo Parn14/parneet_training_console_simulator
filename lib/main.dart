@@ -91,12 +91,7 @@ void main() {
         print('No reports saved yet.');
       } else {
         for (ScoutingReport report in reports) {
-          print(report.teamNumber);
-          print(report.teamName);
-          print(report.matchNumber);
-          print(report.score);
-          print(report.alliance);
-          print(report.scoutMembers);
+          report.printInfo();
         }
       }
     }
@@ -134,4 +129,12 @@ class ScoutingReport {
       this.alliance,
       this.scoutMembers,
       );
+
+  void printInfo() {
+    print('Team $teamNumber:$teamName');
+    print('Match: $matchNumber');
+    print('Score: $score');
+    print('Alliance: $alliance');
+    print('Scout count: $scoutCount');
+  }
 }
