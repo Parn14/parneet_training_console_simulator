@@ -69,6 +69,8 @@ void main() {
         teamName ?? '',
         matchNumber,
         score,
+        allianceColor ?? '',
+        scoutMembers,
       );
 
       reports.add(report);
@@ -93,6 +95,8 @@ void main() {
           print(report.teamName);
           print(report.matchNumber);
           print(report.score);
+          print(report.alliance);
+          print(report.scoutMembers);
         }
       }
     }
@@ -119,11 +123,15 @@ class ScoutingReport {
   String teamName;
   int matchNumber;
   int score;
+  String alliance;
+  int scoutMembers;
 
   ScoutingReport(
       this.teamNumber,
       this.teamName,
       this.matchNumber,
       this.score,
+      this.alliance,
+      this.scoutMembers,
       );
 }
