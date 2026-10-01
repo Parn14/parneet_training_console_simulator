@@ -84,14 +84,20 @@ void main() {
     } else if (choice == '4') {
       print('Time to predict the results of 3v3 matches!')
     } else if (choice == '5') {
-      print('Saved scouting reports:');
+      print('Enter team number to view reports:');
+      String? searchedTeam = stdin.readLineSync();
 
-      if (reports.isEmpty) {
-        print('No reports have been saved yet.');
-      } else {
-        for (ScoutingReport report in reports) {
+      bool foundTeam = false;
+
+      for (ScoutingReport report in reports) {
+        if (report.teamNumber == searchTeam) {
           report.printInfo();
+          foundTeam = true;
         }
+      }
+
+      if (foundTeam == false) {
+        print('No reports have been found for that team. Please scout and come back again!');
       }
     } else if (choice == '6') {
       print('Time to view team stats!')
