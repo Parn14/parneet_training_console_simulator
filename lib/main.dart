@@ -10,7 +10,7 @@ void main() {
     name = 'Guest';
   }
 
-    print('Welcome $name!');
+  print('Welcome $name!');
 
   print('\nWelcome to Parneet\'s scouting simulator!\n');
 
@@ -23,7 +23,8 @@ void main() {
     print('2. Pits scouting');
     print('3. Strategy scouting');
     print('4. Predict a 3v3 match');
-    print('5. View scouting reports') //ask user if they'd like to view pits or match before.
+    print(
+        '5. View scouting reports') //ask user if they'd like to view pits or match before.
     print('6. Look at a team\'s stats');
     print('7. Exit');
 
@@ -41,7 +42,7 @@ void main() {
 
       print('Enter match number:');
       String? matchInput = stdin.readLineSync();
-      int? matchNumber= int.tryParse(matchInput ?? '');
+      int? matchNumber = int.tryParse(matchInput ?? '');
 
       print('Enter score:');
       String? scoreInput = stdin.readLineSync();
@@ -60,7 +61,7 @@ void main() {
       int? scoutMembers = int.tryParse(scoutCountInput ?? '');
 
       if (scoutCount == null) {
-        print('Invalid number of scouters');
+        print('Invalid number of scouters. Please try again.');
         continue;
       }
 
@@ -74,44 +75,35 @@ void main() {
       );
 
       reports.add(report);
-      //eventually should become a stored report (not just printing random data)
-      print('Scouting report saved for the team $teamNumber : $teamNumber!');
 
+      print('Scouting report saved for the team $teamNumber: $teamNumber!');
     } else if (choice == '2') {
       print('Time to scout a robot in pits!');
     } else if (choice == '3') {
       print('Time to strategy scout!');
     } else if (choice == '4') {
-      print('Fancy Nancy! You want to predict 3v3 match stats! Let\'s give it a try!')
+      print('Time to predict the results of 3v3 matches!')
     } else if (choice == '5') {
-
       print('Saved scouting reports:');
 
       if (reports.isEmpty) {
-        print('No reports saved yet.');
+        print('No reports have been saved yet.');
       } else {
         for (ScoutingReport report in reports) {
           report.printInfo();
         }
       }
-    }
-      print('Time to view scouting reports!')
     } else if (choice == '6') {
       print('Time to view team stats!')
     } else if (choice == '7') {
       print('Goodbye! Please visit again!')
-    }
-
-    if (choiceReceived.containsKey(choice)) {
-      print(choiceReceived[choice]);
-
-      if (choice == '7') {
-        working = false;
-      }
+      working = false;
     } else {
       print('Invalid option. Please try again!');
     }
+  }
 }
+
 
 class ScoutingReport {
   String teamNumber;
