@@ -1,10 +1,9 @@
 import 'package:training_2027_project1/main.dart';
+import 'login.dart';
+import 'menu.dart';
 
 void main() {
-  print("Please log into Bear Scouter");
-  print('Enter your name:');
-
-  String name = stdin.readLineSync() ?? '';
+  String name = login();
 
   if (name.isEmpty) {
     name = 'Guest';
@@ -107,32 +106,5 @@ void main() {
     } else {
       print('Invalid option. Please try again!');
     }
-  }
-}
-
-
-class ScoutingReport {
-  String teamNumber;
-  String teamName;
-  int matchNumber;
-  int score;
-  String alliance;
-  int scoutMembers;
-
-  ScoutingReport(
-      this.teamNumber,
-      this.teamName,
-      this.matchNumber,
-      this.score,
-      this.alliance,
-      this.scoutMembers,
-      );
-
-  void printInfo() {
-    print('Team $teamNumber:$teamName');
-    print('Match: $matchNumber');
-    print('Score: $score');
-    print('Alliance: $alliance');
-    print('Scout count: $scoutCount');
   }
 }
