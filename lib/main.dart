@@ -15,7 +15,7 @@ void main() {
   print('\nWelcome to Parneet\'s scouting simulator!\n');
 
   bool working = true;
-  List<Map<String, String>> reports = [];
+  List<ScoutingReport> reports = [];
 
   while (working) {
     print('\nWhat scouting would you like to do today?\n');
@@ -64,14 +64,12 @@ void main() {
         continue;
       }
 
-      Map<String, String> report = {
-        'teamNumber': teamNumber ?? '',
-        'teamName': teamName ?? '',
-        'matchNumber': matchNumber.toString(),
-        'score': score.toString(),
-        'alliance': allianceColor ?? '',
-        'scoutCount': scoutCount.toString,
-      };
+      ScoutingReport report = ScoutingReport(
+        teamNumber ?? '',
+        teamName ?? '',
+        matchNumber,
+        score,
+      );
 
       reports.add(report);
       //eventually should become a stored report (not just printing random data)
@@ -90,8 +88,11 @@ void main() {
       if (reports.isEmpty) {
         print('No reports saved yet.');
       } else {
-        for (Map<String, String> report in reports) {
-          print(report);
+        for (ScoutingReport report in reports) {
+          print(report.teamNumber);
+          print(report.teamName);
+          print(report.matchNumber);
+          print(report.score);
         }
       }
     }
