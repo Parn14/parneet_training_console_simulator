@@ -113,6 +113,31 @@ void main() {
 
       if (teamScores.isEmpty) {
         print('No scores found for that team.');
+      } else {
+        int totalScore = 0;
+
+        for (int score in teamScores) {
+          totalScore += score;
+        }
+
+        double mean = totalScore/teamScores.length;
+
+        int minimum = teamScores[0];
+        int maximum = teamScores[0];
+
+        for (int score in teamScores) {
+          if (score < minimum) {
+            minimum = score;
+          }
+
+          if (score > maximum) {
+            maximum = score;
+          }
+        }
+
+        print('Mean score: $mean');
+        print('Minimum score: $minimum');
+        print('Maximum score: $maximum');
       }
     } else if (choice == '7') {
       print('Goodbye! Please visit again!')
