@@ -1,6 +1,7 @@
 import 'package:training_2027_project1/main.dart';
 import 'login.dart';
 import 'menu.dart';
+import 'scouting_report.dart';
 
 void main() {
   String name = login();
@@ -23,8 +24,7 @@ void main() {
     print('2. Pits scouting');
     print('3. Strategy scouting');
     print('4. Predict a 3v3 match');
-    print(
-        '5. View scouting reports') //ask user if they'd like to view pits or match before.
+    print('5. View scouting reports') //ask user if they'd like to view pits or match before.
     print('6. Look at a team\'s stats');
     print('7. Exit');
 
@@ -99,7 +99,21 @@ void main() {
         print('No reports have been found for that team. Please scout and come back again!');
       }
     } else if (choice == '6') {
-      print('Time to view team stats!')
+      print('Enter team number to view stats:');
+
+      String? teamStats = stdin.readLineSync();
+
+      List<int> teamScores = [];
+
+      for (ScoutingReport report in reports) {
+        if (report.teamNumber == teamStats) {
+          teamScores.add(report.score);
+        }
+      }
+
+      if (teamScores.isEmpty) {
+        print('No scores found for that team.');
+      }
     } else if (choice == '7') {
       print('Goodbye! Please visit again!')
       working = false;
