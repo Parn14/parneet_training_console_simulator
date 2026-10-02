@@ -120,7 +120,7 @@ void main() {
           totalScore += score;
         }
 
-        double mean = totalScore/teamScores.length;
+        double mean = totalScore / teamScores.length;
 
         int minimum = teamScores[0];
         int maximum = teamScores[0];
@@ -138,6 +138,19 @@ void main() {
         print('Mean score: $mean');
         print('Minimum score: $minimum');
         print('Maximum score: $maximum');
+
+        teamScores.sort();
+
+        double median;
+        int middle = teamScores.length ~/2; //integer division (divides and throws away the decimal poriton (step functions but it won't round)
+
+        if (if (teamScores.length/2) == (teamScores.length ~/2)) {
+          median = teamScores[middle];
+        } else {
+          median = teamScores[middle];
+        }
+
+        print('Median score: $median');
       }
     } else if (choice == '7') {
       print('Goodbye! Please visit again!')
