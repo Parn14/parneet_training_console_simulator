@@ -171,8 +171,20 @@ void main() {
         int lowerMiddle = lowerHalf.length ~/2;
         int upperMiddle = upperHalf.length ~/2;
 
-        double q1 = lowerHalf[lowerMiddle].toDouble();
-        double q3 = upperHalf[upperMiddle].toDouble();
+        double q1 = 0
+        double q3 = 0
+
+        if ((lowerHalf.length/2) == (lowerHalf.length ~/2)) {
+          q1 = (lowerHalf[lowerMiddle-1] + lowerHalf[lowerMiddle])/2;
+        } else {
+          q1 = lowerHalf[lowerMiddle].toDouble();
+        }
+
+        if ((upperHalf.length/2) == (upperHalf.length ~/2)) {
+          q3 = (upperHalf[upperMiddle - 1] + upperHalf[upperMiddle])/2;
+        } else {
+          q3 = upperHalf[upperMiddle].toDouble();
+        }
 
         print('Q1: $q1');
         print('Q3: $q3');
