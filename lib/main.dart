@@ -154,26 +154,32 @@ void main() {
         }
 
         print('Median score: $median');
-
+        //q3 and q1
         List<int> lowerHalf = [];
         List<int> upperHalf = [];
 
-        for (int i = 0; i < middle; i++) {
-        lowerHalf.add(teamScores[i]); //i=index
-        }
+        int upperStart = middle;
 
-        for (int i = middle; i < teamScores.length; i++) {
+        if ((teamScores.length/2) != (teamScores.length ~/2)) {
+          upperStart = middle + 1;
+          }
+
+        for (int i = upperStart; i < teamScores.length; i++) {
         upperHalf.add(teamScores[i]);
         }
 
-        int lowerMiddle = lowerHalf.length ~/ 2;
-        int upperMiddle = upperHalf.length ~/ 2;
+        int lowerMiddle = lowerHalf.length ~/2;
+        int upperMiddle = upperHalf.length ~/2;
 
         double q1 = lowerHalf[lowerMiddle].toDouble();
         double q3 = upperHalf[upperMiddle].toDouble();
 
         print('Q1: $q1');
         print('Q3: $q3');
+
+        //iqr
+        double iqr = q3 - q1;
+        print('IQR: $iqr');
 
         //sd
         double differenceTotal = 0;
