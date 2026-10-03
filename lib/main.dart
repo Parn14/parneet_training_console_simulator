@@ -94,10 +94,10 @@ void main() {
       print('Enter red alliance team 3:');
       String? red3 = stdin.readLineSync();
 
-      print('blue Alliance: $blue1, $blue2, $blue3');
+      print('Red Alliance: $blue1, $blue2, $blue3');
 
       print('Enter blue alliance team 1:');
-      String? red1 = stdin.readLineSync();
+      String? blue1 = stdin.readLineSync();
 
       print('Enter blue alliance team 2:');
       String? blue2 = stdin.readLineSync();
@@ -106,6 +106,25 @@ void main() {
       String? blue3 = stdin.readLineSync();
 
       print('Blue Alliance: $blue1, $blue2, $blue3');
+
+      //average score for red1
+      int red1Total = 0;
+      int red1Matches = 0;
+
+      for (ScoutingReport report in reports) {
+        if (report.teamNumber == red1) {
+          red1Total += report.score;
+          red1Matches++;
+        }
+      }
+
+      double red1Average = 0;
+
+      if (red1Matches > 0) {
+        red1Average = red1Total/red1Matches;
+      }
+
+      print('Red 1 average: $red1Average');
 
     } else if (choice == '5') {
       print('Enter team number to view reports:');
