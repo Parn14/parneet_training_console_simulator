@@ -94,7 +94,18 @@ void main() {
       print('Enter red alliance team 3:');
       String? red3 = stdin.readLineSync();
 
-      print('Red Alliance: $red1, $red2, $red3');
+      print('blue Alliance: $blue1, $blue2, $blue3');
+
+      print('Enter blue alliance team 1:');
+      String? red1 = stdin.readLineSync();
+
+      print('Enter blue alliance team 2:');
+      String? blue2 = stdin.readLineSync();
+
+      print('Enter blue alliance team 3:');
+      String? blue3 = stdin.readLineSync();
+
+      print('Blue Alliance: $blue1, $blue2, $blue3');
 
     } else if (choice == '5') {
       print('Enter team number to view reports:');
