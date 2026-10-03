@@ -117,20 +117,21 @@ void main() {
       } else {
         int totalScore = 0;
 
+        //mean
         for (int score in teamScores) {
           totalScore += score;
         }
 
-        double mean = totalScore / teamScores.length;
+        double mean = totalScore/teamScores.length;
 
         int minimum = teamScores[0];
         int maximum = teamScores[0];
-
+        //min
         for (int score in teamScores) {
           if (score < minimum) {
             minimum = score;
           }
-
+          //max
           if (score > maximum) {
             maximum = score;
           }
@@ -140,6 +141,7 @@ void main() {
         print('Minimum score: $minimum');
         print('Maximum score: $maximum');
 
+        // median
         teamScores.sort();
 
         double median;
@@ -153,6 +155,27 @@ void main() {
 
         print('Median score: $median');
 
+        List<int> lowerHalf = [];
+        List<int> upperHalf = [];
+
+        for (int i = 0; i < middle; i++) {
+        lowerHalf.add(teamScores[i]); //i=index
+        }
+
+        for (int i = middle; i < teamScores.length; i++) {
+        upperHalf.add(teamScores[i]);
+        }
+
+        int lowerMiddle = lowerHalf.length ~/ 2;
+        int upperMiddle = upperHalf.length ~/ 2;
+
+        double q1 = lowerHalf[lowerMiddle].toDouble();
+        double q3 = upperHalf[upperMiddle].toDouble();
+
+        print('Q1: $q1');
+        print('Q3: $q3');
+
+        //sd
         double differenceTotal = 0;
 
         for (int score in teamScores) {
