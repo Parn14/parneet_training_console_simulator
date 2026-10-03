@@ -145,9 +145,9 @@ void main() {
         int middle = teamScores.length ~/2; //integer division (divides and throws away the decimal poriton (step functions but it won't round)
 
         if (if (teamScores.length/2) == (teamScores.length ~/2)) {
-          median = teamScores[middle];
+          median = (teamScores[middle -1] + teamScores[middle])/2;
         } else {
-          median = teamScores[middle];
+          median = teamScores[middle].toDouble();
         }
 
         print('Median score: $median');
