@@ -2,6 +2,7 @@ import 'package:training_2027_project1/main.dart';
 import 'login.dart';
 import 'menu.dart';
 import 'scouting_report.dart';
+import 'dart:math';
 
 void main() {
   String name = login();
@@ -151,6 +152,18 @@ void main() {
         }
 
         print('Median score: $median');
+
+        double differenceTotal = 0;
+
+        for (int score in teamScores) {
+        double difference = score - mean;
+        differenceTotal += difference * difference;
+        }
+
+        double variance = differenceTotal/teamScores.length;
+        double standardDeviation = sqrt(variance);
+
+        print('Standard deviation: $standardDeviation');
       }
     } else if (choice == '7') {
       print('Goodbye! Please visit again!')
