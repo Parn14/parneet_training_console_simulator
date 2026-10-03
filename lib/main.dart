@@ -83,7 +83,19 @@ void main() {
     } else if (choice == '3') {
       print('Time to strategy scout!');
     } else if (choice == '4') {
-      print('Time to predict the results of 3v3 matches!')
+      print('Time to predict the results of 3v3 matches!');
+
+      print('Enter red alliance team 1:');
+      String? red1 = stdin.readLineSync();
+
+      print('Enter red alliance team 2:');
+      String? red2 = stdin.readLineSync();
+
+      print('Enter red alliance team 3:');
+      String? red3 = stdin.readLineSync();
+
+      print('Red Alliance: $red1, $red2, $red3');
+
     } else if (choice == '5') {
       print('Enter team number to view reports:');
       String? searchedTeam = stdin.readLineSync();
