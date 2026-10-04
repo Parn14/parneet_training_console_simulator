@@ -153,7 +153,7 @@ void main() {
       double red3Average = 0;
 
       if (red3Matches > 0) {
-        red3Average = red2Total/red3Matches;
+        red3Average = red3Total/red3Matches;
       }
 
       print('Red 1 average: $red1Average');
