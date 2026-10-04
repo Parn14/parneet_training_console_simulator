@@ -212,6 +212,13 @@ void main() {
       print('Blue 2 average: $blue2Average');
       print('Blue 3 average: $blue3Average');
 
+      double redAllianceAverage = red1Average + red2Average + red3Average;
+
+      double blueAllianceAverage = blue1Average + blue2Average + blue3Average;
+
+      print('Red alliance predicted score: $redAllianceAverage');
+      print('Blue alliance predicted score: $blueAllianceAverage');
+
     } else if (choice == '5') {
       print('Enter team number to view reports:');
       String? searchedTeam = stdin.readLineSync();
