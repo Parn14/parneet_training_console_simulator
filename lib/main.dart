@@ -220,12 +220,15 @@ void main() {
       print('Blue alliance predicted score: $blueAllianceAverage');
 
       if (redAllianceAverage > blueAllianceAverage) {
-        print('Red alliance is predicted to win!');
+        print('The red alliance is predicted to win!');
       } else if (blueAllianceAverage > redAllianceAverage) {
-        print('Blue alliance is predicted to win!');
+        print('The blue alliance is predicted to win!');
       } else {
         print('The match is predicted to be a tie!');
       }
+
+      double scoreDifference = redAllianceAverage - blueAllianceAverage;
+      print('Score difference: $scoreDifference');
 
     } else if (choice == '5') {
       print('Enter team number to view reports:');
