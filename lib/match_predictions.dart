@@ -1,6 +1,6 @@
 import 'scouting_report.dart';
 
-void predictMatch(List<ScoutingReport> reports) {
+void predict3v3Match(List <ScoutingReport> reports) {
   print('Time to predict the results of 3v3 matches!');
 
   print('Enter red alliance team 1:');

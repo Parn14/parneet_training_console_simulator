@@ -4,6 +4,7 @@ import 'menu.dart';
 import 'scouting_report.dart';
 import 'match_predictions.dart';
 import 'dart:math';
+import 'match_scouting.dart';
 
 void main() {
   String name = login();
@@ -34,57 +35,13 @@ void main() {
 
     // next to do: split score into auto and teleop, save scouting reports instead of just printing them, make stats work for the teams' data which has been saved and previously scouted, etc.
     if (choice == '1') {
-      print('Time to scout a match!');
-
-      print('Enter team number:');
-      String? teamNumber = stdin.readLineSync();
-
-      print('Enter team name:');
-      String? teamName = stdin.readLineSync();
-
-      print('Enter match number:');
-      String? matchInput = stdin.readLineSync();
-      int? matchNumber = int.tryParse(matchInput ?? '');
-
-      print('Enter score:');
-      String? scoreInput = stdin.readLineSync();
-      int? score = int.tryParse(scoreInput ?? '');
-
-      if (matchNumber == null || score == null) {
-        print('Invalid number entered.');
-        continue;
-      }
-
-      print('Enter alliance color (red/blue):');
-      String? allianceColor = stdin.readLineSync();
-
-      print('Enter number of team members scouting:');
-      String? scoutMembers = stdin.readLineSync();
-      int? scoutMembers = int.tryParse(scoutCountInput ?? '');
-
-      if (scoutCount == null) {
-        print('Invalid number of scouters. Please try again.');
-        continue;
-      }
-
-      ScoutingReport report = ScoutingReport(
-        teamNumber ?? '',
-        teamName ?? '',
-        matchNumber,
-        score,
-        allianceColor ?? '',
-        scoutMembers,
-      );
-
-      reports.add(report);
-
-      print('Scouting report saved for the team $teamNumber: $teamNumber!');
+      scoutTeamRobot(reports);
     } else if (choice == '2') {
       print('Time to scout a robot in pits!');
     } else if (choice == '3') {
       print('Time to strategy scout!');
     } else if (choice == '4') {
-      predictMatch(reports);
+      predict3v3Match(reports);
     } else if (choice == '5') {
       print('Enter team number to view reports:');
       String? searchedTeam = stdin.readLineSync();
@@ -149,64 +106,65 @@ void main() {
         int middle = teamScores.length ~/2; //integer division (divides and throws away the decimal poriton (step functions but it won't round)
 
         if (if (teamScores.length/2) == (teamScores.length ~/2)) {
-          median = (teamScores[middle -1] + teamScores[middle])/2;
-        } else {
-          median = teamScores[middle].toDouble();
-        }
+  median = (teamScores[middle -1] + teamScores[middle])/2;
+  } else {
+  median = teamScores[middle].toDouble();
+  }
 
-        print('Median score: $median');
-        //q3 and q1
-        List<int> lowerHalf = [];
-        List<int> upperHalf = [];
+  print('Median score: $median');
+  //q3 and q1
+  List<int> lowerHalf = [];
+  List<int> upperHalf = [];
 
-        int upperStart = middle;
+  int upperStart = middle;
 
-        if ((teamScores.length/2) != (teamScores.length ~/2)) {
-          upperStart = middle + 1;
-          }
+  if ((teamScores.length/2) != (teamScores.length ~/2)) {
+  upperStart = middle + 1;
+  }
 
-        for (int i = upperStart; i < teamScores.length; i++) {
-        upperHalf.add(teamScores[i]);
-        }
+  for (int i = upperStart; i < teamScores.length; i++) {
+  upperHalf.add(teamScores[i]);
+  }
 
-        int lowerMiddle = lowerHalf.length ~/2;
-        int upperMiddle = upperHalf.length ~/2;
+  int lowerMiddle = lowerHalf.length ~/2;
+  int upperMiddle = upperHalf.length ~/2;
 
-        double q1 = 0
-        double q3 = 0
+  double q1 = 0
+  double q3 = 0
 
-        if ((lowerHalf.length/2) == (lowerHalf.length ~/2)) {
-          q1 = (lowerHalf[lowerMiddle-1] + lowerHalf[lowerMiddle])/2;
-        } else {
-          q1 = lowerHalf[lowerMiddle].toDouble();
-        }
+  if ((lowerHalf.length/2) == (lowerHalf.length ~/2)) {
+  q1 = (lowerHalf[lowerMiddle-1] + lowerHalf[lowerMiddle])/2;
+  } else {
+  q1 = lowerHalf[lowerMiddle].toDouble();
+  }
 
-        if ((upperHalf.length/2) == (upperHalf.length ~/2)) {
-          q3 = (upperHalf[upperMiddle - 1] + upperHalf[upperMiddle])/2;
-        } else {
-          q3 = upperHalf[upperMiddle].toDouble();
-        }
+  if ((upperHalf.length/2) == (upperHalf.length ~/2)) {
+  q3 = (upperHalf[upperMiddle - 1] + upperHalf[upperMiddle])/2;
+  } else {
+  q3 = upperHalf[upperMiddle].toDouble();
+  }
 
-        print('Q1: $q1');
-        print('Q3: $q3');
+  print('Q1: $q1');
+  print('Q3: $q3');
 
-        //iqr
-        double iqr = q3 - q1;
-        print('IQR: $iqr');
+  //iqr
+  double iqr = q3 - q1;
+  print('IQR: $iqr');
 
-        //sd
-        double differenceTotal = 0;
+  //sd
+  double differenceTotal = 0;
 
-        for (int score in teamScores) {
-        double difference = score - mean;
-        differenceTotal += difference * difference;
-        }
+  for (int score in teamScores) {
+  double difference = score - mean;
+  differenceTotal += difference * difference;
+  }
 
-        double variance = differenceTotal/teamScores.length;
-        double standardDeviation = sqrt(variance);
+  double variance = differenceTotal/teamScores.length;
+  double standardDeviation = sqrt(variance);
 
-        print('Standard deviation: $standardDeviation');
-      }
+  print('Standard deviation: $standardDeviation');
+  }
+
     } else if (choice == '7') {
       print('Goodbye! Please visit again!')
       working = false;
