@@ -216,8 +216,12 @@ void main() {
 
       double blueAllianceAverage = blue1Average + blue2Average + blue3Average;
 
+      print('\n 3v3 Match Predictions\n')
       print('Red alliance predicted score: $redAllianceAverage');
       print('Blue alliance predicted score: $blueAllianceAverage');
+
+      double scoreDifference = redAllianceAverage - blueAllianceAverage;
+      print('Predicted score difference: $scoreDifference'); //remember e=a-p
 
       if (redAllianceAverage > blueAllianceAverage) {
         print('The red alliance is predicted to win!');
@@ -227,9 +231,7 @@ void main() {
         print('The match is predicted to be a tie!');
       }
 
-      double scoreDifference = redAllianceAverage - blueAllianceAverage;
-      print('Score difference: $scoreDifference');
-
+      print('Prediction complete!'); //need to move back to home menu
     } else if (choice == '5') {
       print('Enter team number to view reports:');
       String? searchedTeam = stdin.readLineSync();
