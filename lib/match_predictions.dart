@@ -12,7 +12,7 @@ void predict3v3Match(List <ScoutingReport> reports) {
   print('Enter red alliance team 3:');
   String? red3 = stdin.readLineSync();
 
-  print('Red Alliance: $blue1, $blue2, $blue3');
+  print('Red Alliance: $red1, $red2, $red3');
 
   print('Enter blue alliance team 1:');
   String? blue1 = stdin.readLineSync();
@@ -31,7 +31,7 @@ void predict3v3Match(List <ScoutingReport> reports) {
 
   for (ScoutingReport report in reports) {
     if (report.teamNumber == red1) {
-      red1Total += report.score;
+      red1Total += report.scores.totalScore();
       red1Matches++;
     }
   }
@@ -47,7 +47,7 @@ void predict3v3Match(List <ScoutingReport> reports) {
 
   for (ScoutingReport report in reports) {
     if (report.teamNumber == red2) {
-      red2Total += report.score;
+      red2Total += report.scores.totalScore();
       red2Matches++;
     }
   }
@@ -63,7 +63,7 @@ void predict3v3Match(List <ScoutingReport> reports) {
 
   for (ScoutingReport report in reports) {
     if (report.teamNumber == red3) {
-      red3Total += report.score;
+      red3Total += report.scores.totalScore();
       red3Matches++;
     }
   }
@@ -83,7 +83,7 @@ void predict3v3Match(List <ScoutingReport> reports) {
 
   for (ScoutingReport report in reports) {
     if (report.teamNumber == blue1) {
-      blue1Total += report.score;
+      blue1Total += report.scores.totalScore();
       blue1Matches++;
     }
   }
@@ -99,7 +99,7 @@ void predict3v3Match(List <ScoutingReport> reports) {
 
   for (ScoutingReport report in reports) {
     if (report.teamNumber == blue2) {
-      blue2Total += report.score;
+      blue2Total += report.scores.totalScore();
       blue2Matches++;
     }
   }
@@ -115,7 +115,7 @@ void predict3v3Match(List <ScoutingReport> reports) {
 
   for (ScoutingReport report in reports) {
     if (report.teamNumber == blue3) {
-      blue3Total += report.score;
+      blue3Total += report.scores.totalScore();
       blue3Matches++;
     }
   }
@@ -134,7 +134,7 @@ void predict3v3Match(List <ScoutingReport> reports) {
 
   double blueAllianceAverage = blue1Average + blue2Average + blue3Average;
 
-  print('\n 3v3 Match Predictions\n')
+  print('\n 3v3 Match Predictions\n');
   print('Red alliance predicted score: $redAllianceAverage');
   print('Blue alliance predicted score: $blueAllianceAverage');
 
