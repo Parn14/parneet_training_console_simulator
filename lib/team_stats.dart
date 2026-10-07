@@ -1,4 +1,5 @@
 import 'scouting_report.dart';
+import 'dart:math';
 
 void teamStatsReports(List <ScoutingReport> reports) {
 
