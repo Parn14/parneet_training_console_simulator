@@ -1,127 +1,115 @@
 import 'scouting_report.dart';
 import 'dart:math';
 
-void teamStatsReports(List <ScoutingReport> reports) {
+void teamStatsReports(List<ScoutingReport> reports) {
+  print('Enter team number to view stats:');
+  String? teamStats = stdin.readLineSync();
 
-  print('\nEnter team number to view reports:\n');
-  String? searchedTeam = stdin.readLineSync();
+  List<int> teamScores = [];
 
-  foundTeam = false;
   for (ScoutingReport report in reports) {
-    if (report.teamNumber == searchTeam) {
-      report.printInfo();
-      foundTeam = true;
+    if (report.teamNumber == teamStats) {
+      teamScores.add(report.scores.totalScore());
     }
   }
 
-  if (foundTeam == false) {
-    print('No reports have been found for that team. Please scout and come back again!');
+  if (teamScores.isEmpty) {
+    print('Unfortunately, no scores can be found for that team. Please finish scouting and try again!');
+    return;
   }
-} else if (choice == '6') {
-print('Enter team number to view stats:');
 
-String? teamStats = stdin.readLineSync();
+  int totalScore = 0;
 
-List<int> teamScores = [];
+  for (int score in teamScores) {
+    totalScore += score;
+  }
 
-for (ScoutingReport report in reports) {
-if (report.teamNumber == teamStats) {
-teamScores.add(report.score);
-}
-}
+  //mean
+  double mean = totalScore/teamScores.length;
 
-if (teamScores.isEmpty) {
-print('No scores found for that team.');
-} else {
-int totalScore = 0;
+  int minimum = teamScores[0];
+  int maximum = teamScores[0];
 
-//mean
-for (int score in teamScores) {
-totalScore += score;
-}
+  for (int score in teamScores) {
+    if (score < minimum) {
+      minimum = score;//minimum
+    }
 
-double mean = totalScore/teamScores.length;
+    if (score > maximum) {//maximum
+      maximum = score;
+    }
+  }
 
-int minimum = teamScores[0];
-int maximum = teamScores[0];
-//min
-for (int score in teamScores) {
-if (score < minimum) {
-minimum = score;
-}
-//max
-if (score > maximum) {
-maximum = score;
-}
-}
+  print('Mean score: $mean');
+  print('Minimum score: $minimum');
+  print('Maximum score: $maximum');
 
-print('Mean score: $mean');
-print('Minimum score: $minimum');
-print('Maximum score: $maximum');
+  //median
+  teamScores.sort();
 
-// median
-teamScores.sort();
+  int middle = teamScores.length ~/2;
+  double median;
 
-double median;
-int middle = teamScores.length ~/2; //integer division (divides and throws away the decimal poriton (step functions but it won't round)
+  if ((teamScores.length/2) == (teamScores.length ~/2)) {
+    median = (teamScores[middle -1] + teamScores[middle])/2;
+  } else {
+    median = teamScores[middle].toDouble();
+  }
 
-if (if (teamScores.length/2) == (teamScores.length ~/2)) {
-median = (teamScores[middle -1] + teamScores[middle])/2;
-} else {
-median = teamScores[middle].toDouble();
-}
+  print('Median score: $median');
 
-print('Median score: $median');
-//q3 and q1
-List<int> lowerHalf = [];
-List<int> upperHalf = [];
+  //q1 and q3
+  List<int> lowerHalf = [];
+  List<int> upperHalf = [];
 
-int upperStart = middle;
+  for (int i = 0; i < middle; i++) {
+    lowerHalf.add(teamScores[i]);
+  }
 
-if ((teamScores.length/2) != (teamScores.length ~/2)) {
-upperStart = middle + 1;
-}
+  int upperStart = middle;
 
-for (int i = upperStart; i < teamScores.length; i++) {
-upperHalf.add(teamScores[i]);
-}
+  if ((teamScores.length/2) != (teamScores.length ~/2)) {
+    upperStart = middle + 1;
+  }
 
-int lowerMiddle = lowerHalf.length ~/2;
-int upperMiddle = upperHalf.length ~/2;
+  for (int i = upperStart; i < teamScores.length; i++) {
+    upperHalf.add(teamScores[i]);
+  }
 
-double q1 = 0
-double q3 = 0
+  int lowerMiddle = lowerHalf.length ~/2;
+  int upperMiddle = upperHalf.length ~/2;
 
-if ((lowerHalf.length/2) == (lowerHalf.length ~/2)) {
-q1 = (lowerHalf[lowerMiddle-1] + lowerHalf[lowerMiddle])/2;
-} else {
-q1 = lowerHalf[lowerMiddle].toDouble();
-}
+  double q1 = 0;
+  double q3 = 0;
 
-if ((upperHalf.length/2) == (upperHalf.length ~/2)) {
-q3 = (upperHalf[upperMiddle - 1] + upperHalf[upperMiddle])/2;
-} else {
-q3 = upperHalf[upperMiddle].toDouble();
-}
+  if ((lowerHalf.length/2) == (lowerHalf.length ~/2)) {
+    q1 = (lowerHalf[lowerMiddle - 1] + lowerHalf[lowerMiddle])/2;
+  } else {
+    q1 = lowerHalf[lowerMiddle].toDouble();
+  }
 
-print('Q1: $q1');
-print('Q3: $q3');
+  if ((upperHalf.length/2) == (upperHalf.length ~/2)) {
+    q3 = (upperHalf[upperMiddle - 1] + upperHalf[upperMiddle])/2;
+  } else {
+    q3 = upperHalf[upperMiddle].toDouble();
+  }
 
-//iqr
-double iqr = q3 - q1;
-print('IQR: $iqr');
+  print('Q1: $q1');
+  print('Q3: $q3');
 
-//sd
-double differenceTotal = 0;
+  //iqr
+  double iqr = q3 - q1;
+  print('IQR: $iqr');
 
-for (int score in teamScores) {
-double difference = score - mean;
-differenceTotal += difference * difference;
-}
+  double differenceTotal = 0;
 
-double variance = differenceTotal/teamScores.length;
-double standardDeviation = sqrt(variance);
+  for (int score in teamScores) {
+    double difference = score - mean;
+    differenceTotal += difference * difference;
+  }
 
-print('Standard deviation: $standardDeviation');
-}
+  double variance = differenceTotal/teamScores.length;
+  double standardDeviation = sqrt(variance);
+
+  print('Standard deviation: $standardDeviation');
 }
