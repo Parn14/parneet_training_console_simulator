@@ -1,19 +1,69 @@
 import 'scouting_report.dart';
+import 'pit_scouting_report.dart';
 
-void viewReports(List <ScoutingReport> reports) {
-  print('Enter team number to view their scouting reports:');
-  String? searchedTeam = stdin.readLineSync();
+void viewReports(List<ScoutingReport> matchReports, List<PitScoutingReport> pitReports) {
+  print('\nWhat type of report would you like to view?\n');
+  print('1. Match Reports');
+  print('2. Pit Reports');
 
-  bool foundTeam = false;
+  String? reportChoice = stdin.readLineSync();
 
-  for (ScoutingReport report in reports) {
-    if (report.teamNumber == searchedTeam) {
-      report.printInfo();
-      foundTeam = true;
+  if (reportChoice == null || reportChoice.isEmpty) {
+    print('No option entered. Returning to main menu.');
+    return;
+  }
+
+  int? searchedTeam;
+
+  while (searchedTeam == null) {
+    print('\nWhat team would you like to view?');
+
+    String? teamInput = stdin.readLineSync();
+
+    if (teamInput == null || teamInput.isEmpty) {
+      print('No team entered. Returning to main menu.');
+      return;
+    }
+
+    searchedTeam = int.tryParse(teamInput);
+
+    if (searchedTeam == null) {
+      print('Invalid team number. Please enter a number!');
     }
   }
 
+  bool foundTeam = false;
+
+  if (reportChoice == '1') {
+    if (matchReports.isEmpty) {
+      print('There are no match reports saved yet!');
+      return;
+    }
+
+    for (ScoutingReport report in matchReports) {
+      if (report.teamNumber.toString() == searchedTeam.toString()) {
+        report.printInfo();
+        foundTeam = true;
+      }
+    }
+  } else if (reportChoice == '2') {
+    if (pitReports.isEmpty) {
+      print('There are no pit reports saved yet!');
+      return;
+    }
+
+    for (PitScoutingReport report in pitReports) {
+      if (report.teamNumber.toString() == searchedTeam.toString()) {
+        report.printInfo();
+        foundTeam = true;
+      }
+    }
+  } else {
+    print('Invalid report option.');
+    return;
+  }
+
   if (foundTeam == false) {
-    print('Sorry! We couldn\'t find any reports for that team. Please finish scouting before viewing their reports!');
+    print('No reports were found for Team $searchedTeam.');
   }
 }
