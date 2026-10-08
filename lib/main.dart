@@ -7,6 +7,8 @@ import 'dart:math';
 import 'match_scouting.dart';
 import 'team_stats.dart';
 import 'view_reports.dart';
+import 'pit_scouting.dart';
+import 'pit_scouting_report.dart';
 
 void main() {
   String name = login();
@@ -19,6 +21,7 @@ void main() {
 
   bool working = true;
   List<ScoutingReport> reports = [];
+  List<PitScoutingReport> pitReports = [];
   bool foundTeam = false;
 
   while (working) {
@@ -36,19 +39,19 @@ void main() {
     if (choice == '1') {
       scoutMatches(reports);
     } else if (choice == '2') {
-
+      pitScout(pitReports);
     } else if (choice == '3') {
       predict3v3Match(reports);
     } else if (choice == '4') {
       viewReports(reports);
     }else if (choice == '5') {
       teamStatsReports(reports);
-
     } else if (choice == '6') {
       print('Goodbye! Please visit again!')
       working = false;
     } else {
       print('Invalid option. Please try again!');
+      return;
     }
   }
 }
