@@ -1,7 +1,7 @@
 import 'match_scores.dart';
 
 class ScoutingReport {
-  String teamNumber;
+  int teamNumber;
   String teamName;
   int matchNumber;
   MatchScores scores;
