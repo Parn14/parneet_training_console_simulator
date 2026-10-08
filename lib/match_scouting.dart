@@ -4,8 +4,24 @@ import 'match_scores.dart';
 void scoutMatches(List<ScoutingReport> reports) {
   print('Time to scout a match!');
 
-  print('Enter team number:');
-  String? teamNumber = stdin.readLineSync();
+  int? teamNumber;
+
+  while (teamNumber == null) {
+    print('Enter team number:');
+
+    String? teamInput = stdin.readLineSync();
+
+    if (teamInput == null || teamInput.isEmpty) {
+      print('No team number entered. Returning to main menu.');
+      return;
+    }
+
+    teamNumber = int.tryParse(teamInput);
+
+    if (teamNumber == null) {
+      print('Invalid team number. Please enter a number!');
+    }
+  }
 
   print('Enter team name:');
   String? teamName = stdin.readLineSync();
