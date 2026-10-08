@@ -6,6 +6,7 @@ import 'match_predictions.dart';
 import 'dart:math';
 import 'match_scouting.dart';
 import 'team_stats.dart';
+import 'view_reports.dart';
 
 void main() {
   String name = login();
@@ -39,7 +40,7 @@ void main() {
     } else if (choice == '3') {
       predict3v3Match(reports);
     } else if (choice == '4') {
-      print('Time to view scouting reports!')
+      viewReports(reports);
     }else if (choice == '5') {
       teamStatsReports(reports);
 
