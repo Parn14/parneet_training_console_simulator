@@ -35,8 +35,8 @@ void main() {
 
     if (choice == '1') {
       scoutMatches(reports);
-    } else if (choice == '2') { //make pits file
-      print('Time to scout a robot in pits!');
+    } else if (choice == '2') {
+
     } else if (choice == '3') {
       predict3v3Match(reports);
     } else if (choice == '4') {
