@@ -1,5 +1,5 @@
-import 'package:training_2027_project1/main.dart';
 import 'login.dart';
+import 'dart:io';
 import 'scouting_report.dart';
 import 'match_scouting.dart';
 import 'pit_scouting.dart';
@@ -13,8 +13,8 @@ void main() {
 
   print('\nWELCOME $name TO PARNEET\'S SCOUTING SIMULATOR!\n');
 
-  List<ScoutingReport> matchReports = [];
-  List<PitScoutingReport> pitReports = [];
+  List <ScoutingReport> matchReports = [];
+  List <PitScoutingReport> pitReports = [];
 
   bool working = true;
 

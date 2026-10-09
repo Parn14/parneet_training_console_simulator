@@ -1,14 +1,21 @@
 import 'scouting_report.dart';
 import 'dart:math';
+import 'dart:io';
 
-void teamStatsReports(List<ScoutingReport> reports) {
+void teamStatsReports(List <ScoutingReport> reports) {
   print('Enter team number to view stats:');
-  String? teamStats = stdin.readLineSync();
+
+  int? teamNumber = int.tryParse(stdin.readLineSync() ?? '');
+
+  if (teamNumber == null) {
+    print('Invalid team number. Please try again!');
+    return;
+  }
 
   List<int> teamScores = [];
 
   for (ScoutingReport report in reports) {
-    if (report.teamNumber == teamStats) {
+    if (report.teamNumber == teamNumber) {
       teamScores.add(report.scores.totalScore());
     }
   }
@@ -18,13 +25,13 @@ void teamStatsReports(List<ScoutingReport> reports) {
     return;
   }
 
+  //mean
   int totalScore = 0;
 
   for (int score in teamScores) {
     totalScore += score;
   }
 
-  //mean
   double mean = totalScore/teamScores.length;
 
   int minimum = teamScores[0];
@@ -45,7 +52,7 @@ void teamStatsReports(List<ScoutingReport> reports) {
   print('Maximum score: $maximum');
 
   //median
-  teamScores.sort();
+  teamScores.sort();//orders in smallest to largest
 
   double findMedian(List<int> scores) {
     int middle = scores.length ~/ 2;
@@ -53,44 +60,48 @@ void teamStatsReports(List<ScoutingReport> reports) {
     if (scores.length.isOdd) {
       return scores[middle].toDouble();
     } else {
-      int leftMiddle = scores[middle - 1];
-      int rightMiddle = scores[middle];
-
-      return (leftMiddle + rightMiddle)/2;
+      return (scores[middle -1]+ scores [middle])/2;
     }
   }
 
-  print('Median score: $median');
+  double median = findMedian(teamScores);
 
-  //q1 and q3
-  int middle = teamScores.length ~/2;
+  double q1;
+  double q3;
 
-  List<int> lowerHalf = [];
-  List<int> upperHalf = [];
+  if(teamScores.length == 1) {
+    q1 = teamScores[0].toDouble();
+    q3 = teamScores[0].toDouble();
+  }else {
+    int middle = teamScores.length ~/ 2;
 
-  for (int i = 0; i < middle; i++) {
-    lowerHalf.add(teamScores[i]);
+    List<int> lowerHalf = [];
+    List<int> upperHalf = [];
+
+    for (int i = 0; i < middle; i++) {
+      lowerHalf.add(teamScores[i]);
+    }
+
+    int upperStart = middle;
+
+    if (teamScores.length.isOdd) {
+      upperStart = middle + 1;
+    }
+
+    for (int i = upperStart; i < teamScores.length; i++) {
+      upperHalf.add(teamScores[i]);
+    }
+
+    q1 = findMedian(lowerHalf);
+    q3 = findMedian(upperHalf);
   }
 
-  int upperStart = middle;
-
-  if (teamScores.length.isOdd) {
-    upperStart = middle + 1;
-  }
-
-  for (int i = upperStart; i < teamScores.length; i++) {
-    upperHalf.add(teamScores[i]);
-  }
-
-  double q1 = findMedian(lowerHalf);
-  double q3 = findMedian(upperHalf);
   double iqr = q3 - q1;
+  double differenceTotal = 0;
 
   print('Q1: $q1');
   print('Q3: $q3');
   print('IQR: $iqr');
-
-  double differenceTotal = 0;
 
   for (int score in teamScores) {
     double difference = score - mean;

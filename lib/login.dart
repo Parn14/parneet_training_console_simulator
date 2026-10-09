@@ -1,5 +1,7 @@
+import 'dart:io';
+
 String login() {
-  print('Please log into Bear Scouter');
+  print('\nPlease log into Bear Scouter!\n');
   print('Enter your name:');
 
   String userInput = stdin.readLineSync() ?? '';

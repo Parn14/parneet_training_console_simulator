@@ -1,5 +1,6 @@
-import 'scouting_report.dart';
 import 'pit_scouting_report.dart';
+import 'scouting_report.dart';
+import 'dart:io';
 
 void viewReports(List<ScoutingReport> matchReports, List<PitScoutingReport> pitReports) {
   print('\nWhat type of report would you like to view?\n');
@@ -9,7 +10,7 @@ void viewReports(List<ScoutingReport> matchReports, List<PitScoutingReport> pitR
   String? reportChoice = stdin.readLineSync();
 
   if (reportChoice == null || reportChoice.isEmpty) {
-    print('No option entered. Returning to main menu.');
+    print('No option has been entered. Returning to main menu now!');
     return;
   }
 
@@ -17,11 +18,10 @@ void viewReports(List<ScoutingReport> matchReports, List<PitScoutingReport> pitR
 
   while (searchedTeam == null) {
     print('\nWhat team would you like to view?');
-
     String? teamInput = stdin.readLineSync();
 
     if (teamInput == null || teamInput.isEmpty) {
-      print('No team entered. Returning to main menu.');
+      print('No team has been entered. Returning to main menu now!');
       return;
     }
 
@@ -53,7 +53,7 @@ void viewReports(List<ScoutingReport> matchReports, List<PitScoutingReport> pitR
     }
 
     for (PitScoutingReport report in pitReports) {
-      if (report.teamNumber.toString() == searchedTeam.toString()) {
+      if (report.teamNumber.toString() == searchedTeam) {
         report.printInfo();
         foundTeam = true;
       }

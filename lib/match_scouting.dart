@@ -1,7 +1,8 @@
 import 'scouting_report.dart';
 import 'match_scores.dart';
+import 'dart:io';
 
-void scoutMatches(List<ScoutingReport> reports) {
+void scoutMatches(List <ScoutingReport> reports) {
   print('\nTime to scout a match!\n');
 
   // team number
@@ -9,141 +10,131 @@ void scoutMatches(List<ScoutingReport> reports) {
 
   while (teamNumber == null) {
     print('Enter team number:');
-    String? teamInput = stdin.readLineSync();
+    String? teamNumInput = stdin.readLineSync();
 
-    if (teamInput == null || teamInput.isEmpty) {
-      print('No team number entered. Returning to main menu.');
+    if (teamNumInput == null || teamNumInput.isEmpty) {
+      print('No team number has been entered. Returning to main menu now!');
       return;
     }
 
-    teamNumber = int.tryParse(teamInput);
+    teamNumber = int.tryParse(teamNumInput);
 
     if (teamNumber == null) {
       print('Invalid team number. Please enter a number!');
     }
   }
 
-  // team name
+  //team name
   print('Enter team name:');
   String? teamName = stdin.readLineSync();
 
   if (teamName == null || teamName.isEmpty) {
-    print('No team name entered. Returning to main menu.');
+    print('No team name has been entered. Returning to main menu now!');
     return;
   }
 
-  // match number
+  //match number
   int? matchNumber;
 
   while (matchNumber == null) {
     print('Enter match number:');
-    String? matchInput = stdin.readLineSync();
+    String? matchNumEntry = stdin.readLineSync();
 
-    if (matchInput == null || matchInput.isEmpty) {
-      print('No match number entered. Returning to main menu.');
+    if (matchNumEntry == null || matchNumEntry.isEmpty) {
+      print('No match number has been entered. Returning to main menu now!');
       return;
     }
 
-    matchNumber = int.tryParse(matchInput);
+    matchNumber = int.tryParse(matchNumEntry);
 
     if (matchNumber == null) {
       print('Invalid match number. Please enter a number!');
     }
   }
 
-  // auto score
+  //auto score
   int? autoScore;
 
   while (autoScore == null) {
     print('Enter auto score:');
-    String? autoInput = stdin.readLineSync();
+    String? autoScoreEntry = stdin.readLineSync();
 
-    if (autoInput == null || autoInput.isEmpty) {
-      print('No auto score entered. Returning to main menu.');
+    if (autoScoreEntry == null || autoScoreEntry.isEmpty) {
+      print('No auto score has been entered. Returning to main menu now!');
       return;
     }
 
-    autoScore = int.tryParse(autoInput);
+    autoScore = int.tryParse(autoScoreEntry);
 
     if (autoScore == null) {
       print('Invalid auto score. Please enter a number!');
     }
   }
 
-  // teleop score
+  //teleop score
   int? teleopScore;
 
   while (teleopScore == null) {
     print('Enter teleop score:');
-    String? teleopInput = stdin.readLineSync();
+    String? teleopScoreEntry = stdin.readLineSync();
 
-    if (teleopInput == null || teleopInput.isEmpty) {
-      print('No teleop score entered. Returning to main menu.');
+    if (teleopScoreEntry == null || teleopScoreEntry.isEmpty) {
+      print('No teleop score has been entered! Returning to main menu now!');
       return;
     }
 
-    teleopScore = int.tryParse(teleopInput);
+    teleopScore = int.tryParse(teleopScoreEntry);
 
     if (teleopScore == null) {
       print('Invalid teleop score. Please enter a number!');
     }
   }
 
-  MatchScores scores = MatchScores(
-    autoScore,
-    teleopScore,
-  );
+  MatchScores scores = MatchScores(autoScore, teleopScore);
 
-  // alliance
+  //alliance infos
   String? allianceColor;
 
   while (allianceColor == null) {
     print('Enter alliance color (red/blue):');
-    String? allianceInput = stdin.readLineSync();
+    String? allianceColorEntry = stdin.readLineSync();
 
-    if (allianceInput == null || allianceInput.isEmpty) {
-      print('No alliance color entered. Returning to main menu.');
+    if (allianceColorEntry == null || allianceColorEntry.isEmpty) {
+      print('No alliance color has been entered! Returning to main menu now!');
       return;
     }
 
-    allianceInput = allianceInput.toLowerCase();
+    allianceColorEntry = allianceColorEntry.toLowerCase();
 
-    if (allianceInput == 'red' || allianceInput == 'blue') {
-      allianceColor = allianceInput;
+    if (allianceColorEntry == 'red' || allianceColorEntry == 'blue') {
+      allianceColor = allianceColorEntry;
     } else {
       print('Invalid alliance color. Please enter red or blue!');
     }
   }
 
-  // number of scouts
+  //number of scouts
   int? scoutMembers;
 
   while (scoutMembers == null) {
-    print('Enter number of team members scouting:');
-    String? scoutMembersInput = stdin.readLineSync();
+    print('Enter number of team members scouting for this match:');
+    String? scoutMembersNumbers = stdin.readLineSync();
 
-    if (scoutMembersInput == null || scoutMembersInput.isEmpty) {
-      print('No number of scouters entered. Returning to main menu.');
+    if (scoutMembersNumbers == null || scoutMembersNumbers.isEmpty) {
+      print('No number of scouters has been entered. Returning to main menu now!');
       return;
     }
 
-    scoutMembers = int.tryParse(scoutMembersInput);
+    scoutMembers = int.tryParse(scoutMembersNumbers);
 
     if (scoutMembers == null) {
       print('Invalid number of scouters. Please enter a number!');
     }
   }
 
-  ScoutingReport report = ScoutingReport(
-    teamNumber,
-    teamName,
-    matchNumber,
-    scores,
-    allianceColor,
-    scoutMembers,
-  );
+  ScoutingReport report = ScoutingReport(teamNumber, teamName, matchNumber, scores, allianceColor, scoutMembers);
 
   reports.add(report);
 
-  print('Scouting report saved for Team $teamNumber: $teamName!');
+  print('Scouting report has now been saved for Team $teamNumber: $teamName!');
 }

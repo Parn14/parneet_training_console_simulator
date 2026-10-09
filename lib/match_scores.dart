@@ -1,3 +1,4 @@
+// class with scores being seperated into auto and tele, so it's easier to do calculations with them
 class MatchScores {
   int autoScore;
   int teleopScore;
