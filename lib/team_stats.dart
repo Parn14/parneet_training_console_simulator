@@ -47,18 +47,24 @@ void teamStatsReports(List<ScoutingReport> reports) {
   //median
   teamScores.sort();
 
-  int middle = teamScores.length ~/2;
-  double median;
+  double findMedian(List<int> scores) {
+    int middle = scores.length ~/ 2;
 
-  if ((teamScores.length/2) == (teamScores.length ~/2)) {
-    median = (teamScores[middle -1] + teamScores[middle])/2;
-  } else {
-    median = teamScores[middle].toDouble();
+    if (scores.length.isOdd) {
+      return scores[middle].toDouble();
+    } else {
+      int leftMiddle = scores[middle - 1];
+      int rightMiddle = scores[middle];
+
+      return (leftMiddle + rightMiddle)/2;
+    }
   }
 
   print('Median score: $median');
 
   //q1 and q3
+  int middle = teamScores.length ~/2;
+
   List<int> lowerHalf = [];
   List<int> upperHalf = [];
 
@@ -68,7 +74,7 @@ void teamStatsReports(List<ScoutingReport> reports) {
 
   int upperStart = middle;
 
-  if ((teamScores.length/2) != (teamScores.length ~/2)) {
+  if (teamScores.length.isOdd) {
     upperStart = middle + 1;
   }
 
@@ -76,29 +82,12 @@ void teamStatsReports(List<ScoutingReport> reports) {
     upperHalf.add(teamScores[i]);
   }
 
-  int lowerMiddle = lowerHalf.length ~/2;
-  int upperMiddle = upperHalf.length ~/2;
-
-  double q1 = 0;
-  double q3 = 0;
-
-  if ((lowerHalf.length/2) == (lowerHalf.length ~/2)) {
-    q1 = (lowerHalf[lowerMiddle - 1] + lowerHalf[lowerMiddle])/2;
-  } else {
-    q1 = lowerHalf[lowerMiddle].toDouble();
-  }
-
-  if ((upperHalf.length/2) == (upperHalf.length ~/2)) {
-    q3 = (upperHalf[upperMiddle - 1] + upperHalf[upperMiddle])/2;
-  } else {
-    q3 = upperHalf[upperMiddle].toDouble();
-  }
+  double q1 = findMedian(lowerHalf);
+  double q3 = findMedian(upperHalf);
+  double iqr = q3 - q1;
 
   print('Q1: $q1');
   print('Q3: $q3');
-
-  //iqr
-  double iqr = q3 - q1;
   print('IQR: $iqr');
 
   double differenceTotal = 0;

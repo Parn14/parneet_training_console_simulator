@@ -1,4 +1,6 @@
 import 'pit_scouting_report.dart';
+import 'pit_scouting.dart';
+import 'dart:io';
 
 void pitScouting(List<PitScoutingReport> pitReports) {
   print('\nPit Scouting has been selected!\n');
