@@ -47,9 +47,11 @@ void teamStatsReports(List <ScoutingReport> reports) {
     }
   }
 
-  print('Mean score: $mean');
-  print('Minimum score: $minimum');
-  print('Maximum score: $maximum');
+  print('\nTeam Stats:\n');
+
+  print('Mean score: $mean\n');
+  print('Minimum score: $minimum\n');
+  print('Maximum score: $maximum\n');
 
   //median
   teamScores.sort();//orders in smallest to largest
@@ -99,9 +101,11 @@ void teamStatsReports(List <ScoutingReport> reports) {
   double iqr = q3 - q1;
   double differenceTotal = 0;
 
-  print('Q1: $q1');
-  print('Q3: $q3');
-  print('IQR: $iqr');
+  print('Median: $median\n');
+  print('Q1: $q1\n');
+  print('Q3: $q3\n');
+  print('IQR: $iqr\n');
+
 
   for (int score in teamScores) {
     double difference = score - mean;
@@ -111,5 +115,5 @@ void teamStatsReports(List <ScoutingReport> reports) {
   double variance = differenceTotal/teamScores.length;
   double standardDeviation = sqrt(variance);
 
-  print('Standard deviation: $standardDeviation');
+  print('Standard deviation: $standardDeviation\n');
 }

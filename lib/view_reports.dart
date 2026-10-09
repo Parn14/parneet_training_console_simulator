@@ -41,7 +41,7 @@ void viewReports(List<ScoutingReport> matchReports, List<PitScoutingReport> pitR
     }
 
     for (ScoutingReport report in matchReports) {
-      if (report.teamNumber.toString() == searchedTeam.toString()) {
+      if (report.teamNumber.toString() == searchedTeam) {
         report.printInfo();
         foundTeam = true;
       }
